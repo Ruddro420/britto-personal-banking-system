@@ -5,8 +5,6 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
-import Add from './pages/Add.jsx'
-import Layout from './Layout/Layout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,14 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [
+    children:[
       {
         path: "/dashboard",
-        element: <Layout />,
-      },
-      {
-        path: "/dashboard/add",
-        element: <Add />,
+        element: <Dashboard />,
       }
     ]
   },

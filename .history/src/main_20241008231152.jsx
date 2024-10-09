@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Add from './pages/Add.jsx'
-import Layout from './Layout/Layout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,11 +17,11 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "/dashboard",
-        element: <Layout />,
+        path: "dashboard",
+        element: <Dashboard />,
       },
       {
-        path: "/dashboard/add",
+        path: "/add",
         element: <Add />,
       }
     ]
