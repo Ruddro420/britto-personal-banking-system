@@ -1,12 +1,47 @@
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddModal from "./AddModal";
 
 
 const BottomNav = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const trigger = useRef(null);
-    
+    const modal = useRef(null);
+
+    // Close on click outside
+    useEffect(() => {
+        const clickHandler = (event) => {
+            if (!modal.current) return;
+            if (
+                !modalOpen ||
+                modal.current.contains(event.target) || // Click inside modal
+                (trigger && trigger.current.contains(event.target)) // Click on the trigger
+            ) {
+                return;
+            }
+            setModalOpen(false);
+        };
+
+        document.addEventListener("click", clickHandler);
+
+        return () => {
+            document.removeEventListener("click", clickHandler);
+        };
+    }, [modalOpen, trigger, setModalOpen]);
+
+    // Close if the ESC key is pressed
+    useEffect(() => {
+        const keyHandler = (event) => {
+            if (!modalOpen || event.keyCode !== 27) return;
+            setModalOpen(false);
+        };
+
+        document.addEventListener("keydown", keyHandler);
+
+        return () => {
+            document.removeEventListener("keydown", keyHandler);
+        };
+    }, [modalOpen, setModalOpen]);
     return (
         <>
             <AddModal modalOpen={modalOpen} setModalOpen={setModalOpen} trigger={trigger} />

@@ -48,7 +48,7 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
             >
                 <div
                     ref={modal}
-                    className="w-full max-w-[570px] rounded-[5px] bg-white px-8 py-8 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
+                    className="w-full max-w-[570px] rounded-[10px] bg-white px-8 py-8 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
                 >
                     <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
                         Select Your Options

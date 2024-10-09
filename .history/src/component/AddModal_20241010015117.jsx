@@ -10,6 +10,7 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
         const clickHandler = (event) => {
             if (!modal.current) return;
 
+            // Close the modal if clicked outside of it and the trigger (if it exists)
             if (
                 modalOpen &&
                 !modal.current.contains(event.target) &&
@@ -48,7 +49,7 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
             >
                 <div
                     ref={modal}
-                    className="w-full max-w-[570px] rounded-[5px] bg-white px-8 py-8 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
+                    className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
                 >
                     <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
                         Select Your Options
@@ -58,24 +59,21 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
                         <SingleCard
                             CardTitle="Income"
                             titleHref="/dashboard/income"
-                            setModalOpen={setModalOpen} // Pass down setModalOpen
                         />
                         <SingleCard
                             CardTitle="Expense"
                             titleHref="/dashboard/expense"
-                            setModalOpen={setModalOpen} // Pass down setModalOpen
                         />
-                     {/*    <SingleCard
+                        <SingleCard
                             CardTitle="Category"
                             titleHref="/dashboard/category"
-                            setModalOpen={setModalOpen} 
-                        /> */}
+                        />
                     </div>
                     <div className="-mx-3 flex flex-wrap mt-4">
                         <div className="w-full px-3">
                             <button
                                 onClick={() => setModalOpen(false)}
-                                className="block w-full rounded border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white dark:text-white"
+                                className="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white dark:text-white"
                             >
                                 Cancel
                             </button>
@@ -88,19 +86,12 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
 };
 
 export default AddModal;
-const SingleCard = ({ image, CardTitle, titleHref, setModalOpen }) => {
-    const handleClick = () => {
-        setModalOpen(false); // Close the modal when a card is clicked
-    };
 
+const SingleCard = ({ image, CardTitle, titleHref }) => {
     return (
         <div className="overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-white dark:shadow-card dark:hover:shadow-3">
             <img src={image} alt="" className="w-full" />
-            <Link
-                to={titleHref}
-                onClick={handleClick} // Close modal on link click
-                className="p-5 text-left sm:p-2 md:p-2 xl:p-9"
-            >
+            <Link to={titleHref} className="p-5 text-left sm:p-2 md:p-2 xl:p-9">
                 <h3>
                     <p className="text-center block text-xl font-semibold text-dark hover:text-primary dark:text-dark sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
                         {CardTitle}
