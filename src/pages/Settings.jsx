@@ -1,4 +1,3 @@
-import { FaOpera } from "react-icons/fa";
 import SettingButton from "../component/SettingButton";
 import { CalendarDays, KeyRound, ListChecks, Moon, UserRoundPen } from "lucide-react";
 
