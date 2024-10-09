@@ -7,7 +7,6 @@ import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Add from './pages/Add.jsx'
 import Layout from './Layout/Layout.jsx'
-import Settings from './pages/Settings.jsx'
 
 const router = createBrowserRouter([
   {
@@ -27,8 +26,8 @@ const router = createBrowserRouter([
         element: <Add />,
       },
       {
-        path: "/dashboard/settings",
-        element: <Settings />,
+        path: "/dashboard/add",
+        element: <Add />,
       },
     ]
   },

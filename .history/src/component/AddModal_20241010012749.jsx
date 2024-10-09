@@ -44,7 +44,7 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
                         className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
                     >
                         <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
-                          Select Your Options
+                            Your Message Sent Successfully
                         </h3>
                         <span
                             className={`mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-primary`}
@@ -54,14 +54,22 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
                             CardTitle="Budget"
                             titleHref="/#"
                             btnHref="/#"
+                            CardDescription="100 Taka"
                         />
                         <SingleCard
                             CardTitle="Income"
                             titleHref="/#"
                             btnHref="/#"
+                            CardDescription="100 Taka"
                         />
                         <SingleCard
                             CardTitle="Expense"
+                            titleHref="/#"
+                            btnHref="/#"
+                            CardDescription="100 Taka"
+                        />
+                        <SingleCard
+                            CardTitle="Balance"
                             titleHref="/#"
                             btnHref="/#"
                             CardDescription="100 Taka"

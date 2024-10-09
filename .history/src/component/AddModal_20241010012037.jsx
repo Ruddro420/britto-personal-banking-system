@@ -44,29 +44,16 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
                         className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
                     >
                         <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
-                          Select Your Options
+                            Your Message Sent Successfully
                         </h3>
                         <span
                             className={`mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-primary`}
                         ></span>
-                       <div className="grid grid-cols-2 gap-3">
-                        <SingleCard
-                            CardTitle="Budget"
-                            titleHref="/#"
-                            btnHref="/#"
-                        />
-                        <SingleCard
-                            CardTitle="Income"
-                            titleHref="/#"
-                            btnHref="/#"
-                        />
-                        <SingleCard
-                            CardTitle="Expense"
-                            titleHref="/#"
-                            btnHref="/#"
-                            CardDescription="100 Taka"
-                        />
-                    </div>
+                        <p className="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry. Lorem Ipsum has been the industry&rsquo;s standard dummy text
+                            ever since
+                        </p>
                         <div className="-mx-3 flex flex-wrap">
                             <div className="w-1/2 px-3">
                                 <button
@@ -90,32 +77,3 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
 };
 
 export default AddModal;
-const SingleCard = ({
-    image,
-    CardDescription,
-    CardTitle,
-}) => {
-    return (
-        <>
-            {/*  */}
-            <div className="overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3">
-                <img src={image} alt="" className="w-full" />
-                <div className="p-5 text-left sm:p-2 md:p-2 xl:p-9">
-                    <h3>
-                        <p
-                            className="mb-4 block text-xl font-semibold text-dark hover:text-primary dark:text-white sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
-                        >
-                            {CardTitle}
-                        </p>
-                    </h3>
-                    <p className=" text-base leading-relaxed text-body-color dark:text-dark-6">
-                        {CardDescription}
-                    </p>
-
-
-                </div>
-            </div>
-            {/*  */}
-        </>
-    );
-};

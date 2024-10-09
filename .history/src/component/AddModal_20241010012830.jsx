@@ -59,9 +59,16 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
                             CardTitle="Income"
                             titleHref="/#"
                             btnHref="/#"
+                            CardDescription="100 Taka"
                         />
                         <SingleCard
                             CardTitle="Expense"
+                            titleHref="/#"
+                            btnHref="/#"
+                            CardDescription="100 Taka"
+                        />
+                        <SingleCard
+                            CardTitle="Balance"
                             titleHref="/#"
                             btnHref="/#"
                             CardDescription="100 Taka"
