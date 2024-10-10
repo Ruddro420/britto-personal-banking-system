@@ -6,19 +6,12 @@
 body{
     font-family: "Quicksand", sans-serif;
 }
-#datepicker-container{
-    margin-top: -215px;
+.dateinputcontainer{
+    position: relative;
 }
-.custom-date-input {
-    color: red; /* Change the text color */
-    background-color: lightgray; /* Change the background color */
-    border: 1px solid #ccc; /* Customize the border */
-}
-
-.custom-date-input::-webkit-datetime-edit {
-    color: red; /* For text inside the input field */
-}
-
-.custom-date-input::-webkit-calendar-picker-indicator {
-    filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(180deg); /* Change the calendar icon color */
+.dateinput{
+    /* margin-bottom: -100px !important; */
+    position: absolute;
+    width: 45px;
+    z-index: 999;
 }

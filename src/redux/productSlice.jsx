@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { toast } from "react-toastify"
+import { toast } from "react-hot-toast"
 
 const initialState = {
     addIncome: [],
+    addExpense: [],
+    addBudget: [],
     productData: [],
     userInfo: null,
     payment: [],
@@ -16,7 +18,15 @@ export const productSlice = createSlice({
         // for category purpose
         addIncomeData: (state, action) => {
             state.addIncome.push(action.payload)
-            toast.success('Category added successfully!')
+            toast.success('Income added successfully!')
+        },
+        addExpenseData: (state, action) => {
+            state.addExpense.push(action.payload)
+            toast.success('Expense added successfully!')
+        },
+        addBudgetData: (state, action) => {
+            state.addBudget.push(action.payload)
+            toast.success('Budget added successfully!')
         },
         addToCart: (state, action) => {
             const existingProduct = state.productData.find(item => item.id === action.payload.id);
@@ -90,6 +100,6 @@ export const productSlice = createSlice({
     },
 })
 
-export const { addIncomeData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
+export const { addIncomeData, addExpenseData, addBudgetData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
 
 export default productSlice.reducer;
