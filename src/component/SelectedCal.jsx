@@ -9,13 +9,13 @@ const TdStyle = {
 
 const SelectedCal = () => {
   return (
-    <section className='bg-white dark:bg-dark py-5 lg:py-[120px] pb-[150px]'>
+    <section className='bg-white dark:bg-dark py-5 lg:py-[120px] pb-[100px] mx-4 rounded-md'>
       <div className='container'>
         <div className='flex flex-wrap -mx-4'>
           <div className='w-full '>
-            <div className='max-w-full overflow-x-auto'>
-              <table className='w-full table-auto'>
-                <thead className='text-center bg-primary'>
+            <div className='max-w-full overflow-x-auto rounded-md'>
+              <table className='w-full table-auto '>
+                <thead className='text-center dark:bg-gray-800'>
                   <tr>
                     <th className={TdStyle.ThStyle}> Income </th>
                     <th className={TdStyle.ThStyle}> Expense </th>
@@ -25,7 +25,7 @@ const SelectedCal = () => {
                 <tbody>
                   <tr>
                     <td className={TdStyle.TdStyle}>= 500 Taka</td>
-                    <td className={TdStyle.TdStyle2}>= 200 Taka</td>
+                    <td className={TdStyle.TdStyle}>= 200 Taka</td>
                   </tr>
                   <tr>
                     <td className={TdStyle.TdStyle3} colSpan={2}>Total = 100 Taka</td>

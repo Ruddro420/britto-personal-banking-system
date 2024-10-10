@@ -33,7 +33,7 @@ export default function AccountButton() {
   });
 
   return (
-    <section className="bg-gray-2 dark:bg-gray-800 ">
+    <section className="bg-gray-2 dark:bg-gray-800 rounded-lg">
       <div className="">
         <div className="flex justify-center">
           <div className="relative inline-block">

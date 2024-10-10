@@ -1,23 +1,34 @@
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BottomNav from "../component/BottomNav";
 import TopNav from "../component/TopNav";
 
 const Dashboard = () => {
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedTheme = localStorage.getItem("darkMode");
+        const userPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return savedTheme === "true" || (savedTheme === null && userPrefersDark);
+    });
 
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    console.log("DarkMode: ", isDarkMode);
+    useEffect(() => {
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        localStorage.setItem("darkMode", isDarkMode);
+    }, [isDarkMode]);
+
     const handleThemeToggle = (isChecked) => {
         setIsDarkMode(isChecked);
     };
 
     return (
-        <div className={`${isDarkMode ? 'dark' : ''} `}>
-            <div className="dark:bg-gray-900 bg-white">
-            <TopNav />
+        <div className={`min-h-screen ${isDarkMode ? 'dark:bg-gray-900' : 'bg-white'}`}>
+            <TopNav handleThemeToggle={handleThemeToggle} isDarkMode={isDarkMode} />
             <Outlet context={{ isDarkMode, handleThemeToggle }} />
             <BottomNav />
-            </div>
         </div>
     );
 };

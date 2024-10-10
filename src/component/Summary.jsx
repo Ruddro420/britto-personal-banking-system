@@ -4,7 +4,7 @@
 const Summary = () => {
     return (
         <>
-            <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-5">
+            <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-3">
                 <div className="container">
                     <div className="grid grid-cols-2 gap-3">
                         <SingleCard

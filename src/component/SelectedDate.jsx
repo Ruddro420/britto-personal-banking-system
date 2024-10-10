@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import SelectedCal from "./SelectedCal";
 
 export default function SelectedDate() {
@@ -112,7 +112,7 @@ export default function SelectedDate() {
 
   return (
     <>
-    <section className="bg-white lg:py-[120px] dark:bg-dark-2 pt-4">
+    <section className="bg-white lg:py-[120px] dark:bg-dark-2 pt-4 mx-4 rounded-md">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 md:w-1/2 lg:w-1/3">
