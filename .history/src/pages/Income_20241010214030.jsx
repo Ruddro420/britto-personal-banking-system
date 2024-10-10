@@ -1,4 +1,7 @@
+/* eslint-disable react/prop-types */
+
 import { useDispatch } from "react-redux";
+import DatePicker from "../component/DatePicker";
 import { addIncomeData } from "../redux/productSlice";
 import { useState } from "react";
 
@@ -20,9 +23,8 @@ const Income = () => {
         }));
     };
 
-    const handleClick = (e) => {
-        e.target.type = 'date'; // Convert input to date type on first click
-        e.target.click();       // Programmatically trigger the click to open date picker
+    const handleFocus = (e) => {
+        e.target.type = 'date'; // Convert input to type date on focus
     };
 
     const handleBlur = (e) => {
@@ -30,7 +32,7 @@ const Income = () => {
             e.target.type = 'text'; // If no date is selected, revert to text input
         } else {
             const selectedDate = new Date(e.target.value);
-            e.target.type = 'text';
+            e.target.type = 'text'; 
             e.target.value = selectedDate.toISOString().substring(0, 10); // Format as YYYY-MM-DD
             setDate(e.target.value); // Set the date in state
         }
@@ -69,8 +71,8 @@ const Income = () => {
                                         id="dateInput" 
                                         placeholder="Select a date" 
                                         className="custom-date-input w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-                                        onClick={handleClick} 
-                                       /*  onBlur={handleBlur} */
+                                        onFocus={handleFocus} 
+                                        onBlur={handleBlur}
                                         value={date}
                                         onChange={(e) => setDate(e.target.value)}
                                     />

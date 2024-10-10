@@ -70,7 +70,7 @@ const Income = () => {
                                         placeholder="Select a date" 
                                         className="custom-date-input w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
                                         onClick={handleClick} 
-                                       /*  onBlur={handleBlur} */
+                                        onBlur={handleBlur}
                                         value={date}
                                         onChange={(e) => setDate(e.target.value)}
                                     />
