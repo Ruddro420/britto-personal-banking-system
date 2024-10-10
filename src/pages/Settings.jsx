@@ -5,7 +5,10 @@ import { useOutletContext } from "react-router-dom";
 const Settings = () => {
     // Access the context passed via Outlet
     const { isDarkMode, handleThemeToggle } = useOutletContext();
-
+    const handleClearData = () => {
+        localStorage.clear(); 
+        alert("All data has been cleared from local storage.");
+    };
     return (
         <section className="bg-gray-200 pt-[90px] dark:bg-gray-900 lg:pb-20 lg:pt-[120px] pb-5">
             <div className="container">
@@ -24,7 +27,7 @@ const Settings = () => {
                     <SettingButton content={"Edit Profile"} icon={<UserRoundPen />} onClick={""} />
                     <SettingButton content={"Calendar"} icon={<CalendarDays />} onClick={""} />
                     <SettingButton content={"Payment Categories"} icon={<ListChecks />} onClick={""} />
-                    <SettingButton content={"Delete Data"} icon={<Trash2 />} onClick={""} color={"text-red-400"} />
+                    <SettingButton content={"Delete Data"} icon={<Trash2 />} onClick={handleClearData} color={"text-red-400"} />
                 </div>
             </div>
         </section>
