@@ -6,7 +6,7 @@ import AddModal from "./AddModal";
 const BottomNav = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const trigger = useRef(null);
-    
+
     return (
         <>
             <AddModal modalOpen={modalOpen} setModalOpen={setModalOpen} trigger={trigger} />
@@ -36,14 +36,14 @@ const BottomNav = () => {
                             Home
                             <div className="tooltip-arrow" data-popper-arrow></div>
                         </div>
-                        <button data-tooltip-target="tooltip-bookmark" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        <Link to='/dashboard/report' data-tooltip-target="tooltip-bookmark" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                             <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
                                 <path d="M13 20a1 1 0 0 1-.64-.231L7 15.3l-5.36 4.469A1 1 0 0 1 0 19V2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v17a1 1 0 0 1-1 1Z" />
                             </svg>
                             <span className="text-sm dark:text-gray-400">Report</span>
-                        </button>
+                        </Link>
                         <div id="tooltip-bookmark" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                            Bookmark
+                            Report
                             <div className="tooltip-arrow" data-popper-arrow></div>
                         </div>
                         <button ref={trigger}
@@ -54,7 +54,7 @@ const BottomNav = () => {
                             <span className="text-sm dark:text-gray-400">Add</span>
                         </button>
                         <div id="tooltip-post" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                            New post 
+                            New post
                             <div className="tooltip-arrow" data-popper-arrow></div>
                         </div>
                         <button data-tooltip-target="tooltip-search" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
