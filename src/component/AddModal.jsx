@@ -44,7 +44,7 @@ const AddModal = ({ setModalOpen, modalOpen, trigger }) => {
     return (
         <div className="container mx-auto py-10">
             <div
-                className={`fixed left-0 top-0 flex h-full w-full items-center justify-center bg-dark/90 px-4 py-5 ${modalOpen ? "block" : "hidden"}`}
+                className={`fixed left-0 top-0 flex h-full w-full items-center justify-center bg-dark/40 dark:bg-dark/90 px-4 py-5 ${modalOpen ? "block" : "hidden"}`}
             >
                 <div
                     ref={modal}
@@ -94,7 +94,7 @@ const SingleCard = ({ image, CardTitle, titleHref, setModalOpen }) => {
     };
 
     return (
-        <div className="overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-white dark:shadow-card dark:hover:shadow-3">
+        <div className="overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-gray-700 dark:text-white dark:shadow-card dark:hover:shadow-3">
             <img src={image} alt="" className="w-full" />
             <Link
                 to={titleHref}
@@ -102,7 +102,7 @@ const SingleCard = ({ image, CardTitle, titleHref, setModalOpen }) => {
                 className="p-5 text-left sm:p-2 md:p-2 xl:p-9"
             >
                 <h3>
-                    <p className="text-center block text-xl font-semibold text-dark hover:text-primary dark:text-dark sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                    <p className="text-center block text-xl font-semibold text-dark hover:text-primary dark:text-white sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
                         {CardTitle}
                     </p>
                 </h3>

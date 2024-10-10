@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function AccountButton() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -86,7 +87,7 @@ export default function AccountButton() {
               </div>
              
               <div>
-                <button className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium text-dark hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">
+                <Link to={"/"} className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium text-dark hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">
                   <span className="flex items-center gap-2">
                     <svg
                       width="16"
@@ -106,7 +107,7 @@ export default function AccountButton() {
                     </svg>
                     Log out
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>

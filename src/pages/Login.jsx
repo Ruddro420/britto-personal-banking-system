@@ -19,7 +19,7 @@ const Login = () => {
                                         <img
                                             width={80}
                                             className='m-auto mb-5'
-                                            src="../../public/logo.png"
+                                            src="./logo.png"
                                             alt="logo"
                                         />
                                        <p className='mb-6 text-secondary-color dark:text-dark-7 text-2xl'> Personal Bank</p>

@@ -213,7 +213,7 @@ export default function SelectedDate() {
                 {isOpen && (
                   <div
                     id="datepicker-container"
-                    className="shadow-datepicker absolute mt-2 rounded-xl border border-stroke bg-white pt-5 dark:border-dark-3 dark:bg-dark-2"
+                    className="z-10 shadow-datepicker absolute rounded-xl border border-stroke bg-white pt-5 dark:border-dark-3 dark:bg-dark-2"
                   >
                     <div className="flex items-center justify-between px-5">
                       <button
