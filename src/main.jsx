@@ -9,6 +9,8 @@ import Add from './pages/Add.jsx'
 import Layout from './Layout/Layout.jsx'
 import Settings from './pages/Settings.jsx'
 import Income from './pages/Income.jsx'
+import Expense from './pages/Expense.jsx'
+import Report from './pages/Report.jsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/income",
         element: <Income />,
+      },
+      {
+        path: "/dashboard/expense",
+        element: <Expense />,
+      },
+      {
+        path: "/dashboard/report",
+        element: <Report />,
       },
     ]
   },
