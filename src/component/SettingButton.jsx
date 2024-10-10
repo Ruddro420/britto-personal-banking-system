@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-const SettingButton = ({content, icon, onClick}) => {
+const SettingButton = ({ content, icon, onClick }) => {
   return (
     <>
       <div className="w-full">
-      {/* text-dark border-b border-[#E8E8E8] bg-white dark:border-dark dark:bg-dark-4 dark:text-dark-7 py-5 px-2 text-center text-base font-medium */}
+
+
         <button
           onClick={onClick}
           type="button"
