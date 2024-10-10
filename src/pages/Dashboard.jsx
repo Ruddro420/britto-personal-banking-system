@@ -6,7 +6,7 @@ import TopNav from "../component/TopNav";
 const Dashboard = () => {
 
     const [isDarkMode, setIsDarkMode] = useState(false);
-    console.log(isDarkMode);
+    console.log("DarkMode: ", isDarkMode);
     const handleThemeToggle = (isChecked) => {
         setIsDarkMode(isChecked);
     };

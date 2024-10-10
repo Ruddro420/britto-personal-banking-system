@@ -8,11 +8,11 @@ const Budget = () => {
                     <h1>Set Budget</h1>
                 </div>
             </div>
-            <section className=" z-10 overflow-hidden bg-white lg:py-[120px] mt-6">
+            <section className=" z-10 overflow-hidden dark:bg-gray-900 bg-white lg:py-[120px] mt-6">
                 <div className="">
                     <div className="-mx-4 flex flex-wrap lg:justify-between">
                         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-                            <div className=" bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
+                            <div className=" bg-white p-8 shadow-lg dark:bg-gray-900 sm:p-12">
                                 <form>
                                     <ContactInputBox
                                         type="text"
@@ -53,7 +53,7 @@ const ContactInputBox = ({ type, placeholder, name }) => {
                     type={type}
                     placeholder={placeholder}
                     name={name}
-                    className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+                    className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-gray-800 dark:text-dark-6"
                 />
             </div>
         </>

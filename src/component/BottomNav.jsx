@@ -131,7 +131,7 @@ const BottomNav = () => {
               type="button"
               className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group"
             >
-              <WalletMinimal  className="text-gray-400"/>
+              <WalletMinimal  className="dark:text-gray-400 text-gray-500"/>
 
               <span className="text-sm dark:text-gray-400">Budget</span>
             </Link>
