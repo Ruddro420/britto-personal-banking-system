@@ -11,6 +11,7 @@ import Settings from './pages/Settings.jsx'
 import Income from './pages/Income.jsx'
 import Expense from './pages/Expense.jsx'
 import Report from './pages/Report.jsx'
+import Budget from './pages/Budget.jsx'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/report",
         element: <Report />,
+      },
+      {
+        path: "/dashboard/budget",
+        element: <Budget />,
       },
     ]
   },

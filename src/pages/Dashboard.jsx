@@ -4,7 +4,7 @@ import BottomNav from "../component/BottomNav";
 import TopNav from "../component/TopNav";
 
 const Dashboard = () => {
-    
+
     const [isDarkMode, setIsDarkMode] = useState(false);
     console.log(isDarkMode);
     const handleThemeToggle = (isChecked) => {
@@ -12,10 +12,12 @@ const Dashboard = () => {
     };
 
     return (
-        <div className={`${isDarkMode ? 'dark' : ''} dark:bg-gray-900 bg-white`}>
+        <div className={`${isDarkMode ? 'dark' : ''} `}>
+            <div className="dark:bg-gray-900 bg-white">
             <TopNav />
             <Outlet context={{ isDarkMode, handleThemeToggle }} />
             <BottomNav />
+            </div>
         </div>
     );
 };

@@ -8,7 +8,7 @@ const Settings = () => {
     const { isDarkMode, handleThemeToggle } = useOutletContext();
 
     return (
-        <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-5">
+        <section className="bg-gray-200 pt-[90px] dark:bg-gray-900 lg:pb-20 lg:pt-[120px] pb-5">
             <div className="container">
                 <div className="grid grid-cols-2 gap-3 dark:text-white mt-3 text-xl font-bold">
                     <h1>Settings</h1>
