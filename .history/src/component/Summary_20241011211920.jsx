@@ -73,8 +73,8 @@ const Summary = ({ incomeList, expenseList, budgetList }) => {
               CardTitle="Balance"
               titleHref="/#"
               btnHref="/#"
-              color={Number(totalIncome) - Number(totalExpense) < 0 ? "text-red-400" : ""}
-              CardDescription={Number(totalIncome) - Number(totalExpense)}
+            //color={Number(totalIncome) - Number(totalExpense) <0 ?"text-red-400":""}
+            //CardDescription={Number(totalIncome) - Number(totalExpense)}
             />
           </div>
         </div>

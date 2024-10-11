@@ -20,9 +20,6 @@ const Budget = () => {
         note: note,
       })
     );
-    setAmount('')
-    setMonth('')
-    setNote('')
   };
   return (
     <section className="bg-gray-2 pt-[90px] dark:bg-gray-900 lg:pb-20 lg:pt-[120px] pb-10 mb-5">

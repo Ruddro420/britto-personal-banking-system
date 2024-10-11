@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Summary = ({ incomeList, expenseList, budgetList }) => {
-  const [totalBudget, setTotalBudget] = useState(0)
-  const [totalIncome, setTotalIncome] = useState(0)
-  const [totalExpense, setTotalExpense] = useState(0)
   /* const totalIncome = incomeList.reduce(
     (acc, income) => acc + income.amount,
     0
@@ -19,30 +16,17 @@ const Summary = ({ incomeList, expenseList, budgetList }) => {
     0
   ); */
 
+  let totalBudget = 0;
 
   useEffect(() => {
 
-    let budgetSum = 0
-    let incomeSum = 0
-    let expenseSum = 0
-    // budget sum
-    budgetList.forEach(item => {
-      budgetSum += parseInt(item.amount);
-    });
-    setTotalBudget(budgetSum)
-    // income sum
-    incomeList.forEach(item => {
-      incomeSum += parseInt(item.amount);
-    });
-    setTotalIncome(incomeSum)
-    // expense sum
-    expenseList.forEach(item => {
-      expenseSum += parseInt(item.amount);
-    });
-    setTotalExpense(expenseSum)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    budgetList.map(item => totalBudget = totalBudget + parseInt(item.amount))
 
-  }, [budgetList, expenseList, incomeList])
+  }, [budgetList])
 
+
+  console.log(totalBudget);
 
 
   return (
@@ -54,27 +38,27 @@ const Summary = ({ incomeList, expenseList, budgetList }) => {
               CardTitle="Budget"
               titleHref="/#"
               btnHref="/#"
-              CardDescription={Number(totalBudget)}
+            //CardDescription={Number(totalBudget)}
             />
             <SingleCard
               CardTitle="Income"
               titleHref="/#"
               btnHref="/#"
-              CardDescription={Number(totalIncome)}
+            //CardDescription={Number(totalIncome)}
             />
             <SingleCard
               CardTitle="Expense"
               titleHref="/#"
               btnHref="/#"
-              color={Number(totalExpense) > Number(totalIncome) ? "text-red-400" : ""}
-              CardDescription={Number(totalExpense)}
+            //color={Number(totalExpense)>Number(totalIncome)?"text-red-400":""}
+            //CardDescription={Number(totalExpense)}
             />
             <SingleCard
               CardTitle="Balance"
               titleHref="/#"
               btnHref="/#"
-              color={Number(totalIncome) - Number(totalExpense) < 0 ? "text-red-400" : ""}
-              CardDescription={Number(totalIncome) - Number(totalExpense)}
+            //color={Number(totalIncome) - Number(totalExpense) <0 ?"text-red-400":""}
+            //CardDescription={Number(totalIncome) - Number(totalExpense)}
             />
           </div>
         </div>
