@@ -2,7 +2,7 @@
 
 import { CalendarDays } from "lucide-react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addExpenseData } from "../redux/productSlice";
 import ReportTable from "./ReportTable";
 
@@ -35,7 +35,15 @@ const Expense = () => {
       })
     );
   };
-  console.log(date);
+  
+  
+  /* Expense Table Data----------------- */
+   const expenseList = useSelector((state) => state.personalBanking.addExpense);
+ 
+   const mergedList = [
+      ...expenseList.map((item) => ({ ...item, type: "Expense" })),
+   ];
+   
   return (
     <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-10 mb-5">
       <div className="container">
@@ -88,7 +96,7 @@ const Expense = () => {
         </div>
       </section>
       <div>
-        <ReportTable />
+        <ReportTable tabledata={mergedList} />
       </div>
     </section>
   );
@@ -98,7 +106,7 @@ export default Expense;
 
 const ContactInputBox = ({ type, placeholder, name, data, value }) => {
   return (
-    <div className="mb-6">
+    <div className="mb-3">
       <input
         type={type}
         placeholder={placeholder}
@@ -121,7 +129,7 @@ const DateInputBox = ({ datedata }) => {
   };
   return (
     <>
-      <div className="w-full mb-3 -mt-3 dateinputcontainer">
+      <div className="w-full mb-3 dateinputcontainer">
 
         <label htmlFor="dateinput" className="w-full">
           <input

@@ -1,67 +1,74 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Summary = ({ incomeList, expenseList, budgetList }) => {
-  const [totalBudget, setTotalBudget] = useState(0)
-  const [totalIncome, setTotalIncome] = useState(0)
-  const [totalExpense, setTotalExpense] = useState(0)
-  
+  const [totalBudget, setTotalBudget] = useState(0);
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [totalExpense, setTotalExpense] = useState(0);
+
   // all calculation
   useEffect(() => {
-
-    let budgetSum = 0
-    let incomeSum = 0
-    let expenseSum = 0
+    let budgetSum = 0;
+    let incomeSum = 0;
+    let expenseSum = 0;
     // budget sum
-    budgetList.forEach(item => {
+    budgetList.forEach((item) => {
       budgetSum += parseInt(item.amount);
     });
-    setTotalBudget(budgetSum)
+    setTotalBudget(budgetSum);
     // income sum
-    incomeList.forEach(item => {
+    incomeList.forEach((item) => {
       incomeSum += parseInt(item.amount);
     });
-    setTotalIncome(incomeSum)
+    setTotalIncome(incomeSum);
     // expense sum
-    expenseList.forEach(item => {
+    expenseList.forEach((item) => {
       expenseSum += parseInt(item.amount);
     });
-    setTotalExpense(expenseSum)
-
-  }, [budgetList, expenseList, incomeList])
-
-
+    setTotalExpense(expenseSum);
+  }, [budgetList, expenseList, incomeList]);
 
   return (
     <>
       <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-3">
         <div className="container">
           <div className="grid grid-cols-2 gap-3">
-            <SingleCard
-              CardTitle="Budget"
-              titleHref="/#"
-              btnHref="/#"
-              CardDescription={Number(totalBudget)}
-            />
-            <SingleCard
-              CardTitle="Income"
-              titleHref="/#"
-              btnHref="/#"
-              CardDescription={Number(totalIncome)}
-            />
-            <SingleCard
-              CardTitle="Expense"
-              titleHref="/#"
-              btnHref="/#"
-              color={Number(totalExpense) > Number(totalIncome) ? "text-red-400" : ""}
-              CardDescription={Number(totalExpense)}
-            />
+            <Link to={"/dashboard/budget"}>
+              <SingleCard
+                CardTitle="Budget"
+                titleHref="/#"
+                btnHref="/#"
+                CardDescription={Number(totalBudget)}
+              />
+            </Link>
+            <Link to={"/dashboard/income"}>
+              <SingleCard
+                CardTitle="Income"
+                titleHref="/#"
+                btnHref="/#"
+                CardDescription={Number(totalIncome)}
+              />
+            </Link>
+
+            <Link to={"/dashboard/expense"}>
+              <SingleCard
+                CardTitle="Expense"
+                titleHref="/#"
+                btnHref="/#"
+                color={
+                  Number(totalExpense) > Number(totalIncome) ? "text-red-400" : ""}
+                CardDescription={Number(totalExpense)}
+              />
+            </Link>
+
             <SingleCard
               CardTitle="Balance"
               titleHref="/#"
               btnHref="/#"
-              color={Number(totalIncome) - Number(totalExpense) < 0 ? "text-red-400" : ""}
+              color={
+                Number(totalIncome) - Number(totalExpense) < 0 ? "text-red-400": ""}
               CardDescription={Number(totalIncome) - Number(totalExpense)}
             />
           </div>
@@ -86,8 +93,10 @@ const SingleCard = ({ image, CardDescription, CardTitle, color }) => {
             </p>
           </h3>
           <p
-            className={`text-base leading-relaxed  ${color ? `${color}` : "text-body-color dark:text-dark-6"}`}>
-
+            className={`text-base leading-relaxed  ${
+              color ? `${color}` : "text-body-color dark:text-dark-6"
+            }`}
+          >
             {CardDescription} Taka
           </p>
         </div>

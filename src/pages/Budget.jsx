@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { addBudgetData } from "../redux/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CalendarDays } from "lucide-react";
+import ReportTable from "./ReportTable";
 
 const Budget = () => {
   const [amount, setAmount] = useState("");
@@ -17,8 +18,7 @@ const Budget = () => {
     const max = 10000000;
     const randomNum = Math.floor(Math.random() * (max - min + 1) + min);
     return randomNum;
-}
-
+  };
 
   const addBudget = (e) => {
     e.preventDefault();
@@ -30,10 +30,17 @@ const Budget = () => {
         note: note,
       })
     );
-    setAmount('')
-    setMonth('')
-    setNote('')
+    setAmount("");
+    setMonth("");
+    setNote("");
   };
+
+  /* Display Budget---------------- */
+  const budgetList = useSelector((state) => state.personalBanking.addBudget);
+
+  const mergedList = [
+    ...budgetList.map((item) => ({ ...item, type: "Budget" })),
+  ];
   return (
     <section className="bg-gray-2 pt-[90px] dark:bg-gray-900 lg:pb-20 lg:pt-[120px] pb-10 mb-5">
       <div className="container">
@@ -41,14 +48,13 @@ const Budget = () => {
           <h1>Set Budget</h1>
         </div>
       </div>
-      <section className=" z-10 overflow-hidden dark:bg-gray-900 bg-white lg:py-[120px] mt-6">
+      <section className="z-10 overflow-hidden bg-white lg:py-[120px] mt-6 mb-[130px]">
         <div className="">
           <div className="-mx-4 flex flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-              <div className=" bg-white p-8 shadow-lg dark:bg-gray-900 sm:p-12">
+              <div className="bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
                 <form onSubmit={addBudget}>
-                <DateInputBox monthdata={setMonth}/>
-                  
+
                   <ContactInputBox
                     type="number"
                     name="amount"
@@ -56,6 +62,8 @@ const Budget = () => {
                     data={(e) => setAmount(e.target.value)}
                     value={amount}
                   />
+                  <DateInputBox monthdata={setMonth} />
+
                   <ContactTextArea
                     row="3"
                     placeholder="Note"
@@ -78,6 +86,9 @@ const Budget = () => {
           </div>
         </div>
       </section>
+      <div>
+        <ReportTable type={"Budget"} tabledata={mergedList} />
+      </div>
     </section>
   );
 };
@@ -85,33 +96,32 @@ const Budget = () => {
 export default Budget;
 
 const ContactInputBox = ({ type, placeholder, name, data, value }) => {
-    return (
-      <div className="mb-6">
-        <input
-          type={type}
-          placeholder={placeholder}
-          name={name}
-          onChange={data}
-          value={value}
-          className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-        />
-      </div>
-    );
+  return (
+    <div className="mb-6">
+      <input
+        type={type}
+        placeholder={placeholder}
+        name={name}
+        onChange={data}
+        value={value}
+        className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+      />
+    </div>
+  );
+};
+
+/* Date Input----------------- */
+const DateInputBox = ({ monthdata }) => {
+  const [selectedDate, setSelectedDate] = useState("");
+  const handleDateChange = (e) => {
+    const dateValue = e.target.value;
+    setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
+    monthdata(dateValue.split("-").reverse().join("/"));
   };
-  
-  /* Date Input----------------- */
-  const DateInputBox = ({monthdata}) => {
-    const [selectedDate, setSelectedDate] = useState("");
-    const handleDateChange = (e) => {
-      const dateValue = e.target.value;
-      setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
-      monthdata(dateValue.split("-").reverse().join("/"));
-    };
-    return (
-      <>
-        <div className="w-full mb-3 -mt-3 dateinputcontainer">
-        
-          <label htmlFor="dateinput" className="w-full">
+  return (
+    <>
+      <div className="w-full mb-3 -mt-3 dateinputcontainer">
+        <label htmlFor="dateinput" className="w-full">
           <input
             className="opacity-0 dateinput"
             type="month"
@@ -119,32 +129,29 @@ const ContactInputBox = ({ type, placeholder, name, data, value }) => {
             id="dateinput"
             onChange={handleDateChange}
           />
-            <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
-            <CalendarDays size={15}/>{selectedDate ? selectedDate : "mm / yyyy"}
-            
-            </div>
-            
-          </label>
-          
-        </div>
-      </>
-    );
-  };
-  
+          <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
+            <CalendarDays size={15} />
+            {selectedDate ? selectedDate : "mm / yyyy"}
+          </div>
+        </label>
+      </div>
+    </>
+  );
+};
 
-  /* text area------------- */
+/* text area------------- */
 
 const ContactTextArea = ({ row, placeholder, name, data, value }) => {
-    return (
-      <div className="mb-6">
-        <textarea
-          rows={row}
-          placeholder={placeholder}
-          name={name}
-          className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-          onChange={data}
-          value={value}
-        />
-      </div>
-    );
-  };
+  return (
+    <div className="mb-6">
+      <textarea
+        rows={row}
+        placeholder={placeholder}
+        name={name}
+        className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+        onChange={data}
+        value={value}
+      />
+    </div>
+  );
+};

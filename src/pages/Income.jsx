@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addIncomeData } from "../redux/productSlice";
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
-import SelectedCal from "../component/SelectedCal";
 import ReportTable from "./ReportTable";
 
 const Income = () => {
@@ -21,7 +20,6 @@ const Income = () => {
         return randomNum;
     }
 
-
     const addIncome = (e) => {
         e.preventDefault();
         dispatch(
@@ -38,6 +36,15 @@ const Income = () => {
         setDate('')
         setNote('')
     };
+
+    /* Income Table Data------------- */
+    const incomeList = useSelector((state) => state.personalBanking.addIncome);
+    // const expenseList = useSelector((state) => state.personalBanking.addExpense);
+  
+    const mergedList = [
+      ...incomeList.map((item) => ({ ...item, type: "Income" })),
+    //   ...expenseList.map((item) => ({ ...item, type: "Expense" })),
+    ];
 
     return (
         <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-10 mb-5">
@@ -91,7 +98,7 @@ const Income = () => {
                 </div>
             </section>
             <div>
-                <ReportTable />
+                <ReportTable tabledata={mergedList}/>
             </div>
         </section>
     );
@@ -101,7 +108,7 @@ export default Income;
 
 const ContactInputBox = ({ type, placeholder, name, data, value }) => {
     return (
-        <div className="mb-6">
+        <div className="mb-3">
             <input
                 type={type}
                 placeholder={placeholder}
@@ -123,7 +130,7 @@ const DateInputBox = ({ datedata }) => {
     };
     return (
         <>
-            <div className="w-full mb-3 -mt-3 dateinputcontainer">
+            <div className="w-full mb-3 dateinputcontainer">
                 <label htmlFor="dateinput" className="w-full">
                     <input
                         className="opacity-0 dateinput"
