@@ -14,13 +14,13 @@ const Expense = () => {
   console.log(source);
   const dispatch = useDispatch();
 
-  // generate random number
-  const randomNumber = () => {
+   // generate random number
+   const randomNumber = () => {
     const min = 1;
-    const max = 10000000;
+    const max = 100000;
     const randomNum = Math.floor(Math.random() * (max - min + 1) + min);
     return randomNum;
-  }
+}
 
 
   const addExpense = (e) => {
@@ -88,8 +88,8 @@ const Expense = () => {
         </div>
       </section>
       <div>
-        <ReportTable />
-      </div>
+                <ReportTable />
+            </div>
     </section>
   );
 };
@@ -97,33 +97,33 @@ const Expense = () => {
 export default Expense;
 
 const ContactInputBox = ({ type, placeholder, name, data, value }) => {
-  return (
-    <div className="mb-6">
-      <input
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        onChange={data}
-        value={value}
-        className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-      />
-    </div>
-  );
-};
-
-/* Date Input----------------- */
-const DateInputBox = ({ datedata }) => {
-  const [selectedDate, setSelectedDate] = useState("");
-  const handleDateChange = (e) => {
-    const dateValue = e.target.value;
-    setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
-    datedata(dateValue.split("-").reverse().join("/"));
+    return (
+      <div className="mb-6">
+        <input
+          type={type}
+          placeholder={placeholder}
+          name={name}
+          onChange={data}
+          value={value}
+          className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+        />
+      </div>
+    );
   };
-  return (
-    <>
-      <div className="w-full mb-3 -mt-3 dateinputcontainer">
-
-        <label htmlFor="dateinput" className="w-full">
+  
+  /* Date Input----------------- */
+  const DateInputBox = ({datedata}) => {
+    const [selectedDate, setSelectedDate] = useState("");
+    const handleDateChange = (e) => {
+      const dateValue = e.target.value;
+      setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
+      datedata(dateValue.split("-").reverse().join("/"));
+    };
+    return (
+      <>
+        <div className="w-full mb-3 -mt-3 dateinputcontainer">
+        
+          <label htmlFor="dateinput" className="w-full">
           <input
             className="opacity-0 dateinput"
             type="date"
@@ -131,31 +131,32 @@ const DateInputBox = ({ datedata }) => {
             id="dateinput"
             onChange={handleDateChange}
           />
-          <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
-            <CalendarDays size={15} />{selectedDate ? selectedDate : "dd / mm / yyyy"}
-
-          </div>
-
-        </label>
-
+            <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
+            <CalendarDays size={15}/>{selectedDate ? selectedDate : "dd / mm / yyyy"}
+            
+            </div>
+            
+          </label>
+          
+        </div>
+      </>
+    );
+  };
+  
+  /* text area------------- */
+  
+  const ContactTextArea = ({ row, placeholder, name, data, value }) => {
+    return (
+      <div className="mb-6">
+        <textarea
+          rows={row}
+          placeholder={placeholder}
+          name={name}
+          className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+          onChange={data}
+          value={value}
+        />
       </div>
-    </>
-  );
-};
-
-/* text area------------- */
-
-const ContactTextArea = ({ row, placeholder, name, data, value }) => {
-  return (
-    <div className="mb-6">
-      <textarea
-        rows={row}
-        placeholder={placeholder}
-        name={name}
-        className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-        onChange={data}
-        value={value}
-      />
-    </div>
-  );
-};
+    );
+  };
+  

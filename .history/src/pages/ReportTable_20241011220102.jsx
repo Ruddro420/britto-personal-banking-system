@@ -9,7 +9,7 @@ const ReportTable = () => {
   const dispatch = useDispatch()
   const mergedList = [
     ...incomeList.map((item) => ({ ...item, type: "Income" })),
-    ...expenseList.map((item) => ({ ...item, type: "Expense" })),
+     ...expenseList.map((item) => ({ ...item, type: "Expense" })),
   ];
 
   const sortedList = mergedList.sort(

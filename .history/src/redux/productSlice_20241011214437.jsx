@@ -30,12 +30,10 @@ export const productSlice = createSlice({
         },
         // Delete Function
         deleteData: (state, action) => {
-            state.addIncome = state.addIncome.filter(item => item.id !== action.payload.id);
-            state.addExpense = state.addExpense.filter(item => item.id !== action.payload.id);
-            state.addBudget = state.addBudget.filter(item => item.id !== action.payload.id);
+            state.addIncome = state.addIncome.filter((item) => item.id == action.payload.id);
         },
         addToCart: (state, action) => {
-            const existingProduct = state.productData.find((item, index) => index == action.payload.id);
+            const existingProduct = state.productData.find((item,index) => index == action.payload.id);
             if (existingProduct) {
                 existingProduct.quantity += 1; // Increase quantity if product already exists
                 //toast.info('Product quantity increased in cart');
@@ -106,6 +104,6 @@ export const productSlice = createSlice({
     },
 })
 
-export const { deleteData, addIncomeData, addExpenseData, addBudgetData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
+export const { deleteData,addIncomeData, addExpenseData, addBudgetData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
 
 export default productSlice.reducer;

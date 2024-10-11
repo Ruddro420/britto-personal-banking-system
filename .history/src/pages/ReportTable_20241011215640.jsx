@@ -9,13 +9,17 @@ const ReportTable = () => {
   const dispatch = useDispatch()
   const mergedList = [
     ...incomeList.map((item) => ({ ...item, type: "Income" })),
-    ...expenseList.map((item) => ({ ...item, type: "Expense" })),
+    // ...expenseList.map((item) => ({ ...item, type: "Expense" })),
   ];
 
   const sortedList = mergedList.sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
+  /* Delete Function */
+  const deleteHandler = (id) => {
+    dispatch(deleteData(id))
 
+  }
   return (
     <div style={{ marginTop: "-110px", paddingBottom: "60px" }}>
       <div className="relative overflow-x-auto shadow-md rounded-b-md mx-4">
@@ -38,9 +42,9 @@ const ReportTable = () => {
           </thead>
 
           {/* Report Data to show----------- */}
-          {sortedList.length > 0 ? (
+          {incomeList.length > 0 ? (
             <tbody>
-              {sortedList.map((income, index) => (
+              {incomeList.map((income, index) => (
                 <tr
                   key={index}
                   className="dark:bg-gray-700 border-b text-black dark:text-white dark:border-gray-900 blue-400 text-center"
@@ -61,14 +65,8 @@ const ReportTable = () => {
                   <td className="px-6 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white">
                     {income.date}
                   </td>
-                  <td className="px-6 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white">
-                    <button onClick={() => dispatch(deleteData({
-                      id: income.id
-                    }))} className='userButton rounded'>
-                      <span className="material-symbols-outlined p-1 ">
-                        delete
-                      </span>
-                    </button>
+                  <td onClick={() => deleteHandler(income.id)} className="px-6 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white">
+                    <button className="btn btn-success"> Delete</button>
                   </td>
                 </tr>
               ))}

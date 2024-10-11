@@ -13,20 +13,11 @@ const Income = () => {
     const [note, setNote] = useState("");
     const dispatch = useDispatch();
 
-    // generate random number
-    const randomNumber = () => {
-        const min = 1;
-        const max = 10000000;
-        const randomNum = Math.floor(Math.random() * (max - min + 1) + min);
-        return randomNum;
-    }
-
 
     const addIncome = (e) => {
         e.preventDefault();
         dispatch(
             addIncomeData({
-                id: randomNumber(),
                 source: source,
                 amount: amount,
                 date: date,

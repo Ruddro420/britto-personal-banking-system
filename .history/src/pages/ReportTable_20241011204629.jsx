@@ -1,12 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { deleteData } from "../redux/productSlice";
-
 /* eslint-disable react/prop-types */
-const ReportTable = () => {
-  const incomeList = useSelector((state) => state.personalBanking.addIncome);
-  const expenseList = useSelector((state) => state.personalBanking.addExpense);
-  // dispatch
-  const dispatch = useDispatch()
+const ReportTable = ({ incomeList, expenseList }) => {
   const mergedList = [
     ...incomeList.map((item) => ({ ...item, type: "Income" })),
     ...expenseList.map((item) => ({ ...item, type: "Expense" })),
@@ -15,7 +8,6 @@ const ReportTable = () => {
   const sortedList = mergedList.sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
-
   return (
     <div style={{ marginTop: "-110px", paddingBottom: "60px" }}>
       <div className="relative overflow-x-auto shadow-md rounded-b-md mx-4">
@@ -30,9 +22,6 @@ const ReportTable = () => {
               </th>
               <th scope="col" className="px-6 py-3">
                 Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
               </th>
             </tr>
           </thead>
@@ -51,8 +40,9 @@ const ReportTable = () => {
                   >
                     {income.source}
                     <span
-                      className={`${income.type === "Income" ? "text-green" : "text-red-500"
-                        }`}
+                      className={`${
+                        income.type === "Income" ? "text-green" : "text-red-500"
+                      }`}
                     >
                       {income.type}
                     </span>
@@ -60,15 +50,6 @@ const ReportTable = () => {
                   <td className="px-6 py-4">{income.amount}</td>
                   <td className="px-6 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white">
                     {income.date}
-                  </td>
-                  <td className="px-6 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white">
-                    <button onClick={() => dispatch(deleteData({
-                      id: income.id
-                    }))} className='userButton rounded'>
-                      <span className="material-symbols-outlined p-1 ">
-                        delete
-                      </span>
-                    </button>
                   </td>
                 </tr>
               ))}

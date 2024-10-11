@@ -9,13 +9,17 @@ const ReportTable = () => {
   const dispatch = useDispatch()
   const mergedList = [
     ...incomeList.map((item) => ({ ...item, type: "Income" })),
-    ...expenseList.map((item) => ({ ...item, type: "Expense" })),
+    // ...expenseList.map((item) => ({ ...item, type: "Expense" })),
   ];
 
   const sortedList = mergedList.sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
+  /* Delete Function */
+  const deleteHandler = (id) => {
+    dispatch(deleteData(id))
 
+  }
   return (
     <div style={{ marginTop: "-110px", paddingBottom: "60px" }}>
       <div className="relative overflow-x-auto shadow-md rounded-b-md mx-4">

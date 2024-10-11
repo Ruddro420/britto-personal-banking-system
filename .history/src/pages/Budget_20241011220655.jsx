@@ -24,7 +24,6 @@ const Budget = () => {
     e.preventDefault();
     dispatch(
       addBudgetData({
-        id: randomNumber(),
         amount: amount,
         month: month,
         note: note,

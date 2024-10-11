@@ -13,20 +13,11 @@ const Income = () => {
     const [note, setNote] = useState("");
     const dispatch = useDispatch();
 
-    // generate random number
-    const randomNumber = () => {
-        const min = 1;
-        const max = 10000000;
-        const randomNum = Math.floor(Math.random() * (max - min + 1) + min);
-        return randomNum;
-    }
-
 
     const addIncome = (e) => {
         e.preventDefault();
         dispatch(
             addIncomeData({
-                id: randomNumber(),
                 source: source,
                 amount: amount,
                 date: date,
@@ -48,7 +39,7 @@ const Income = () => {
             </div>
 
 
-            <section className="z-10 overflow-hidden bg-white lg:py-[120px] mt-6 mb-[130px]">
+            <section className="z-10 overflow-hidden bg-white lg:py-[120px] mt-6 mb-[200px]">
                 <div className="">
                     <div className="-mx-4 flex flex-wrap lg:justify-between">
                         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
@@ -90,7 +81,7 @@ const Income = () => {
                     </div>
                 </div>
             </section>
-            <div>
+            <div className="mt-10">
                 <ReportTable />
             </div>
         </section>

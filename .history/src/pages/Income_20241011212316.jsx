@@ -1,58 +1,53 @@
 /* eslint-disable react/prop-types */
-
-import { CalendarDays } from "lucide-react";
+import {  useDispatch } from "react-redux";
+import { addIncomeData } from "../redux/productSlice";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addExpenseData } from "../redux/productSlice";
-import ReportTable from "./ReportTable";
+import { CalendarDays } from "lucide-react";
+import SelectedCal from "../component/SelectedCal";
 
-const Expense = () => {
+const Income = () => {
   const [source, setSource] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [note, setNote] = useState("");
-  console.log(source);
   const dispatch = useDispatch();
 
-  // generate random number
-  const randomNumber = () => {
-    const min = 1;
-    const max = 10000000;
-    const randomNum = Math.floor(Math.random() * (max - min + 1) + min);
-    return randomNum;
-  }
 
-
-  const addExpense = (e) => {
+  const addIncome = (e) => {
     e.preventDefault();
     dispatch(
-      addExpenseData({
-        id: randomNumber(),
+      addIncomeData({
         source: source,
         amount: amount,
         date: date,
         note: note,
       })
     );
+    setSource('')
+    setAmount('')
+    setDate('')
+    setNote('')
   };
-  console.log(date);
+
   return (
     <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-10 mb-5">
       <div className="container">
         <div className="grid grid-cols-2 gap-3 dark:text-white mt-3 text-xl font-bold">
-          <h1>Add Expense</h1>
+          <h1>Add Income</h1>
         </div>
       </div>
-      <section className=" z-10 overflow-hidden bg-white lg:py-[120px] mt-6 mb-[130px]">
+
+
+      <section className="z-10 overflow-hidden bg-white lg:py-[120px] mt-6">
         <div className="">
           <div className="-mx-4 flex flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-              <div className=" bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
-                <form onSubmit={addExpense}>
+              <div className="bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
+                <form onSubmit={addIncome}>
                   <ContactInputBox
                     type="text"
-                    name="expenseSource"
-                    placeholder="Expense Source"
+                    name="incomeSource"
+                    placeholder="Income Source"
                     data={(e) => setSource(e.target.value)}
                     value={source}
                   />
@@ -64,12 +59,10 @@ const Expense = () => {
                     value={amount}
                   />
                   <DateInputBox datedata={setDate} />
-
                   <ContactTextArea
                     row="3"
                     placeholder="Note"
-                    name="details"
-                    defaultValue=""
+                    name="note"
                     data={(e) => setNote(e.target.value)}
                     value={note}
                   />
@@ -78,7 +71,7 @@ const Expense = () => {
                       type="submit"
                       className="w-full rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
                     >
-                      Add Expense
+                      Add Income
                     </button>
                   </div>
                 </form>
@@ -87,14 +80,12 @@ const Expense = () => {
           </div>
         </div>
       </section>
-      <div>
-        <ReportTable />
-      </div>
+      <SelectedCal />
     </section>
   );
 };
 
-export default Expense;
+export default Income;
 
 const ContactInputBox = ({ type, placeholder, name, data, value }) => {
   return (
@@ -111,7 +102,6 @@ const ContactInputBox = ({ type, placeholder, name, data, value }) => {
   );
 };
 
-/* Date Input----------------- */
 const DateInputBox = ({ datedata }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
@@ -122,7 +112,6 @@ const DateInputBox = ({ datedata }) => {
   return (
     <>
       <div className="w-full mb-3 -mt-3 dateinputcontainer">
-
         <label htmlFor="dateinput" className="w-full">
           <input
             className="opacity-0 dateinput"
@@ -131,19 +120,15 @@ const DateInputBox = ({ datedata }) => {
             id="dateinput"
             onChange={handleDateChange}
           />
-          <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
-            <CalendarDays size={15} />{selectedDate ? selectedDate : "dd / mm / yyyy"}
-
+          <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
+            <CalendarDays size={15} />
+            {selectedDate ? selectedDate : "dd / mm / yyyy"}
           </div>
-
         </label>
-
       </div>
     </>
   );
 };
-
-/* text area------------- */
 
 const ContactTextArea = ({ row, placeholder, name, data, value }) => {
   return (

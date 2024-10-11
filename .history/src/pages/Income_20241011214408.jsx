@@ -16,7 +16,7 @@ const Income = () => {
     // generate random number
     const randomNumber = () => {
         const min = 1;
-        const max = 10000000;
+        const max = 100000;
         const randomNum = Math.floor(Math.random() * (max - min + 1) + min);
         return randomNum;
     }

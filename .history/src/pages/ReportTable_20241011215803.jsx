@@ -9,13 +9,17 @@ const ReportTable = () => {
   const dispatch = useDispatch()
   const mergedList = [
     ...incomeList.map((item) => ({ ...item, type: "Income" })),
-    ...expenseList.map((item) => ({ ...item, type: "Expense" })),
+    // ...expenseList.map((item) => ({ ...item, type: "Expense" })),
   ];
 
   const sortedList = mergedList.sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
+  /* Delete Function */
+  const deleteHandler = (id) => {
+    dispatch(deleteData(id))
 
+  }
   return (
     <div style={{ marginTop: "-110px", paddingBottom: "60px" }}>
       <div className="relative overflow-x-auto shadow-md rounded-b-md mx-4">
@@ -38,9 +42,9 @@ const ReportTable = () => {
           </thead>
 
           {/* Report Data to show----------- */}
-          {sortedList.length > 0 ? (
+          {incomeList.length > 0 ? (
             <tbody>
-              {sortedList.map((income, index) => (
+              {incomeList.map((income, index) => (
                 <tr
                   key={index}
                   className="dark:bg-gray-700 border-b text-black dark:text-white dark:border-gray-900 blue-400 text-center"
