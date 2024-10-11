@@ -1,7 +1,17 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
 import SelectedCal from "./SelectedCal";
 
-export default function SelectedDate() {
+export default function SelectedDate({ incomeList, expenseList }) {
+
+  /* Total Income and Expense--------------- */
+  const totalIncome = incomeList.reduce((acc, income) => acc + income.amount, 0);
+  const totalExpense = expenseList.reduce((acc, expense) => acc + expense.amount, 0);
+  
+  console.log("Total Income", totalIncome)
+  console.log("Total Expense",totalExpense)
+
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
@@ -323,7 +333,7 @@ export default function SelectedDate() {
         </div>
       </div>
     </section>
-    <SelectedCal/>
+    <SelectedCal income={totalIncome} expense={totalExpense}/>
     </>
   );
 }

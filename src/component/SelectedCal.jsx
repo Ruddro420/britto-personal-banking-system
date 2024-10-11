@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 const TdStyle = {
   ThStyle: `w-1/6 min-w-[160px] border-l border-transparent py-4 px-3 text-lg font-medium dark:text-white text-black  lg:py-7 lg:px-4`,
@@ -7,9 +8,10 @@ const TdStyle = {
   TdButton: `inline-block px-6 py-2.5 border rounded-md border-primary text-primary hover:bg-primary hover:text-white font-medium`,
 }
 
-const SelectedCal = () => {
+const SelectedCal = ({income, expense}) => {
   return (
     <section className='bg-white dark:bg-dark py-3 lg:py-[120px] pb-[100px] mx-4 rounded-md'>
+
       <div className='container'>
         <div className='flex flex-wrap -mx-4'>
           <div className='w-full '>
@@ -24,11 +26,11 @@ const SelectedCal = () => {
 
                 <tbody>
                   <tr>
-                    <td className={TdStyle.TdStyle}>= 500 Taka</td>
-                    <td className={TdStyle.TdStyle}>= 200 Taka</td>
+                    <td className={TdStyle.TdStyle}>= {Number(income)}</td>
+                    <td className={TdStyle.TdStyle}>= {Number(expense)}</td>
                   </tr>
                   <tr>
-                    <td className={TdStyle.TdStyle3} colSpan={2}>Total = 100 Taka</td>
+                    <td className={TdStyle.TdStyle3} colSpan={2}>Total = {Number(income)+Number(expense)} Taka</td>
                   </tr>
                 </tbody>
               </table>

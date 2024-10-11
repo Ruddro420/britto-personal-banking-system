@@ -1,17 +1,16 @@
 /* eslint-disable react/prop-types */
-import { useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { addIncomeData } from "../redux/productSlice";
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
 
 const Income = () => {
-    
   const [source, setSource] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [note, setNote] = useState("");
-    console.log(date);
   const dispatch = useDispatch();
+
 
   const addIncome = (e) => {
     e.preventDefault();
@@ -32,6 +31,8 @@ const Income = () => {
           <h1>Add Income</h1>
         </div>
       </div>
+
+
       <section className="z-10 overflow-hidden bg-white lg:py-[120px] mt-6">
         <div className="">
           <div className="-mx-4 flex flex-wrap lg:justify-between">
@@ -52,7 +53,7 @@ const Income = () => {
                     data={(e) => setAmount(e.target.value)}
                     value={amount}
                   />
-                  <DateInputBox datedata={setDate}/>
+                  <DateInputBox datedata={setDate} />
                   <ContactTextArea
                     row="3"
                     placeholder="Note"
@@ -95,8 +96,7 @@ const ContactInputBox = ({ type, placeholder, name, data, value }) => {
   );
 };
 
-/* Date Input----------------- */
-const DateInputBox = ({datedata}) => {
+const DateInputBox = ({ datedata }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
@@ -106,28 +106,23 @@ const DateInputBox = ({datedata}) => {
   return (
     <>
       <div className="w-full mb-3 -mt-3 dateinputcontainer">
-      
         <label htmlFor="dateinput" className="w-full">
-        <input
-          className="opacity-0 dateinput"
-          type="date"
-          name="dateinput"
-          id="dateinput"
-          onChange={handleDateChange}
-        />
-          <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
-          <CalendarDays size={15}/>{selectedDate ? selectedDate : "dd / mm / yyyy"}
-          
+          <input
+            className="opacity-0 dateinput"
+            type="date"
+            name="dateinput"
+            id="dateinput"
+            onChange={handleDateChange}
+          />
+          <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
+            <CalendarDays size={15} />
+            {selectedDate ? selectedDate : "dd / mm / yyyy"}
           </div>
-          
         </label>
-        
       </div>
     </>
   );
 };
-
-/* text area------------- */
 
 const ContactTextArea = ({ row, placeholder, name, data, value }) => {
   return (
