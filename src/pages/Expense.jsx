@@ -63,6 +63,7 @@ const Expense = () => {
                     placeholder="Expense Source"
                     data={(e) => setSource(e.target.value)}
                     value={source}
+                    required={true}
                   />
                   <ContactInputBox
                     type="number"
@@ -70,8 +71,9 @@ const Expense = () => {
                     placeholder="Amount"
                     data={(e) => setAmount(e.target.value)}
                     value={amount}
+                    required={true}
                   />
-                  <DateInputBox datedata={setDate} />
+                  <DateInputBox datedata={setDate} required={true} />
 
                   <ContactTextArea
                     row="3"
@@ -80,6 +82,7 @@ const Expense = () => {
                     defaultValue=""
                     data={(e) => setNote(e.target.value)}
                     value={note}
+                    required={true}
                   />
                   <div>
                     <button
@@ -104,11 +107,12 @@ const Expense = () => {
 
 export default Expense;
 
-const ContactInputBox = ({ type, placeholder, name, data, value }) => {
+const ContactInputBox = ({ type, placeholder, name, data, value, required }) => {
   return (
     <div className="mb-3">
       <input
         type={type}
+        required={required}
         placeholder={placeholder}
         name={name}
         onChange={data}
@@ -120,7 +124,7 @@ const ContactInputBox = ({ type, placeholder, name, data, value }) => {
 };
 
 /* Date Input----------------- */
-const DateInputBox = ({ datedata }) => {
+const DateInputBox = ({ datedata, required }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
@@ -137,6 +141,7 @@ const DateInputBox = ({ datedata }) => {
             type="date"
             name="dateinput"
             id="dateinput"
+            required={required}
             onChange={handleDateChange}
           />
           <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
@@ -153,7 +158,7 @@ const DateInputBox = ({ datedata }) => {
 
 /* text area------------- */
 
-const ContactTextArea = ({ row, placeholder, name, data, value }) => {
+const ContactTextArea = ({ row, placeholder, name, data, value, required }) => {
   return (
     <div className="mb-6">
       <textarea
@@ -162,6 +167,7 @@ const ContactTextArea = ({ row, placeholder, name, data, value }) => {
         name={name}
         className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
         onChange={data}
+        required={required}
         value={value}
       />
     </div>
