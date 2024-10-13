@@ -67,6 +67,7 @@ const Income = () => {
                                         placeholder="Income Source"
                                         data={(e) => setSource(e.target.value)}
                                         value={source}
+                                        required={true}
                                     />
                                     <ContactInputBox
                                         type="number"
@@ -74,14 +75,16 @@ const Income = () => {
                                         placeholder="Amount"
                                         data={(e) => setAmount(e.target.value)}
                                         value={amount}
+                                        required={true}
                                     />
-                                    <DateInputBox datedata={setDate} />
+                                    <DateInputBox required={true} datedata={setDate} />
                                     <ContactTextArea
                                         row="3"
                                         placeholder="Note"
                                         name="note"
                                         data={(e) => setNote(e.target.value)}
                                         value={note}
+                                        required={true}
                                     />
                                     <div>
                                         <button
@@ -106,12 +109,13 @@ const Income = () => {
 
 export default Income;
 
-const ContactInputBox = ({ type, placeholder, name, data, value }) => {
+const ContactInputBox = ({ type, placeholder, name, data, value, required }) => {
     return (
         <div className="mb-3">
             <input
                 type={type}
                 placeholder={placeholder}
+                required={required}
                 name={name}
                 onChange={data}
                 value={value}
@@ -121,19 +125,22 @@ const ContactInputBox = ({ type, placeholder, name, data, value }) => {
     );
 };
 
-const DateInputBox = ({ datedata }) => {
+const DateInputBox = ({ datedata, required }) => {
+    
     const [selectedDate, setSelectedDate] = useState("");
     const handleDateChange = (e) => {
         const dateValue = e.target.value;
-        setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
+        setSelectedDate(dateValue); // Converts the date to dd/mm/yyyy format
         datedata(dateValue.split("-").reverse().join("/"));
     };
+
     return (
         <>
             <div className="w-full mb-3 dateinputcontainer">
                 <label htmlFor="dateinput" className="w-full">
                     <input
                         className="opacity-0 dateinput"
+                        required={required}
                         type="date"
                         name="dateinput"
                         id="dateinput"
@@ -149,12 +156,13 @@ const DateInputBox = ({ datedata }) => {
     );
 };
 
-const ContactTextArea = ({ row, placeholder, name, data, value }) => {
+const ContactTextArea = ({ row, placeholder, name, data, value, required }) => {
     return (
         <div className="mb-6">
             <textarea
                 rows={row}
                 placeholder={placeholder}
+                required={required}
                 name={name}
                 className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
                 onChange={data}

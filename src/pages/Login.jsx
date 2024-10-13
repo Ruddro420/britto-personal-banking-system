@@ -1,9 +1,29 @@
+import { useEffect, useState } from "react";
 import CreatePin from "../component/CreatePin";
 
 const Login = () => {
+    const [isDarkMode] = useState(() => {
+        const savedTheme = localStorage.getItem("darkMode");
+        const userPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        return savedTheme === "true" || (savedTheme === null && userPrefersDark);
+      });
+    
+      useEffect(() => {
+        if (isDarkMode) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+    
+        localStorage.setItem("darkMode", isDarkMode);
+      }, [isDarkMode]);
+    
+      
     return (
-        <div>
-            <section className="bg-gray-1 py-20 lg:py-[120px]">
+        <div className={`min-h-screen ${isDarkMode ? "dark:bg-gray-900" : "bg-white"}`}>
+            <section className="bg-gray-1 dark:bg-gray-900 py-20 lg:py-[120px]">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full px-4">

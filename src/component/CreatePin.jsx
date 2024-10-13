@@ -94,7 +94,7 @@ const CreatePin = () => {
                             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
                             <button
                                 type="submit"
-                                className="rounded-[5px] px-5 py-[13px] bg-dark dark:bg-white dark:text-dark-2 text-base font-medium text-white mt-5"
+                                className="rounded-[5px] px-5 py-[13px] border-primary bg-gray-800 dark:bg-primary p-3 text-base font-medium text-white mt-5"
                             >
                                 Login Pin
                             </button>
