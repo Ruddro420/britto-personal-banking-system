@@ -128,8 +128,8 @@ const DateInputBox = ({ datedata, required }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
-    setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
-    datedata(dateValue.split("-").reverse().join("/"));
+    setSelectedDate(dateValue); // Converts the date to dd/mm/yyyy format using== .split("-").reverse().join("/")
+    datedata(dateValue);
   };
   return (
     <>

@@ -117,8 +117,8 @@ const DateInputBox = ({ monthdata, required }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
-    setSelectedDate(dateValue.split("-").reverse().join("/")); // Converts the date to dd/mm/yyyy format
-    monthdata(dateValue.split("-").reverse().join("/"));
+    setSelectedDate(dateValue);
+    monthdata(dateValue);
   };
   return (
     <>
