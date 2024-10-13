@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { createPin, logInSession } from '../redux/productSlice';
+import { createPin } from '../redux/productSlice';
 import toast, { Toaster } from 'react-hot-toast';
 
 const CreatePin = () => {
@@ -35,9 +35,7 @@ const CreatePin = () => {
     //login pin
     const loginPin = (event) => {
         event.preventDefault();
-        if (getInput == userInfoPin) {
-            
-            dispatch(logInSession())
+        if (getInput == userInfoPin && userInfoSession == 'Yes') {
             navigate('/dashboard')
         } else {
             setError('Wrong Pin');

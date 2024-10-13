@@ -8,8 +8,8 @@ const PrivateRoute = ({ children }) => {
 
   // Redirect to dashboard if the user is authenticated and session is active
   return userInfoPin && userInfoPin.length !== 0 && userInfoSession === 'Yes'
-    ? children
-    : <Navigate to="/" />;
+      ? children
+      : <Navigate to="/" />;
 };
 
 export default PrivateRoute;

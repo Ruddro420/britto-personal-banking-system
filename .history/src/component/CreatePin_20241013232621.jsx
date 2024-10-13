@@ -36,8 +36,7 @@ const CreatePin = () => {
     const loginPin = (event) => {
         event.preventDefault();
         if (getInput == userInfoPin) {
-            
-            dispatch(logInSession())
+            dispatch(logInSession)
             navigate('/dashboard')
         } else {
             setError('Wrong Pin');

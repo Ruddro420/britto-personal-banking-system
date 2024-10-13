@@ -39,15 +39,12 @@ export const productSlice = createSlice({
                 toast.error('Pin Already Created!');
             }
         },
-        logInSession: (state) => {
-            state.userInfo.session = 'Yes';
-        },
         logOutSession: (state) => {
-            state.userInfo.session = 'No';
+            state.userInfo.session = undefined;
         },
     },
 })
 
-export const {logInSession, logOutSession, createPin, deleteData, addIncomeData, addExpenseData, addBudgetData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
+export const { logOutSession, createPin, deleteData, addIncomeData, addExpenseData, addBudgetData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
 
 export default productSlice.reducer;

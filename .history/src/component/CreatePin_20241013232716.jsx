@@ -36,6 +36,7 @@ const CreatePin = () => {
     const loginPin = (event) => {
         event.preventDefault();
         if (getInput == userInfoPin) {
+            console.log('hello');
             
             dispatch(logInSession())
             navigate('/dashboard')

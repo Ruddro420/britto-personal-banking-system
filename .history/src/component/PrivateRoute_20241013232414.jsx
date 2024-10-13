@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
   const userInfoSession = useSelector((state) => state.personalBanking.userInfo.session);
 
   // Redirect to dashboard if the user is authenticated and session is active
-  return userInfoPin && userInfoPin.length !== 0 && userInfoSession === 'Yes'
+  return userInfoPin && userInfoPin.length !== 0 
     ? children
     : <Navigate to="/" />;
 };
