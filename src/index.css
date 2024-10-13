@@ -6,10 +6,23 @@
 body{
     font-family: "Quicksand", sans-serif;
 }
+
 .dateinputcontainer{
     position: relative;
 }
+
 .dateinput{
+    /* margin-bottom: -100px !important; */
+    position: absolute;
+    width: 45px;
+    z-index: 999;
+}
+
+.reportdateinputcontainer{
+    position: relative;
+}
+
+.reportdateinput{
     /* margin-bottom: -100px !important; */
     position: absolute;
     width: 45px;
