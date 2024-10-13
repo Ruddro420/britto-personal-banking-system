@@ -32,7 +32,7 @@ const Report = () => {
       </section>
       <div className="dark:bg-dark-2 pb-5 mt-[-14px]">
         <div className="container">
-          <div className="flex gap-4 mt-6">
+          <div className="flex gap-4 pt-8">
             <DateInputBox required={true} datedata={setFromDate} />
             <DateInputBox required={true} datedata={setToDate} />
           </div>
@@ -59,7 +59,7 @@ const DateInputBox = ({ datedata, required }) => {
   return (
     <>
       <div className="w-full mb-3 reportdateinputcontainer">
-        <label htmlFor="dateinput" className="w-full">
+        <label htmlFor="dateinput" className="w-full dark:bg-dark">
           <input
             className="opacity-0 reportdateinput text-black"
             required={required}
