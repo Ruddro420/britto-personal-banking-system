@@ -31,6 +31,7 @@ const Report = () => {
       <div className="dark:bg-dark-2 pb-5 mt-[-14px]">
         <div className="container">
           <DateInputBox required={true} datedata={setDate} />
+          <DateInputBox required={true} datedata={setDate} />
         </div>
       </div>
       <div className="mt-20">
@@ -43,53 +44,34 @@ const Report = () => {
 
 export default Report;
 
-const DateInputBox = ({ datedata, required }) => {
 
+const DateInputBox = ({ datedata, required }) => {
+    
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
-    const dateValue = e.target.value;
-    setSelectedDate(dateValue); // Converts the date to dd/mm/yyyy format
-    datedata(dateValue.split("-").reverse().join("/"));
+      const dateValue = e.target.value;
+      setSelectedDate(dateValue); // Converts the date to dd/mm/yyyy format
+      datedata(dateValue.split("-").reverse().join("/"));
   };
 
   return (
-    <>
-      <section className="flex gap-5">
-        <div className="w-full mb-3 dateinputcontainer mt-4">
-          <label htmlFor="dateinput" className="w-full mt-5">
-            <label className="text-dark-5" htmlFor="form">From</label>
-            <input
-              className="opacity-0 dateinput"
-              required={required}
-              type="date"
-              name="dateinput"
-              id="dateinput"
-              onChange={handleDateChange}
-            />
-            <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
-              <CalendarDays size={15} />
-              {selectedDate ? selectedDate : "dd / mm / yyyy"}
-            </div>
-          </label>
-        </div>
-        <div className="w-full mb-3 dateinputcontainer mt-4">
-          <label htmlFor="dateinput" className="w-full mt-5">
-            <label className="text-dark-5" htmlFor="form">To</label>
-            <input
-              className="opacity-0 dateinput"
-              required={required}
-              type="date"
-              name="dateinput"
-              id="dateinput"
-             // onChange={handleDateChange}
-            />
-            <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
-              <CalendarDays size={15} />
-              {selectedDate ? selectedDate : "dd / mm / yyyy"}
-            </div>
-          </label>
-        </div>
-      </section>
-    </>
+      <>
+          <div className="w-full mb-3 dateinputcontainer">
+              <label htmlFor="dateinput" className="w-full">
+                  <input
+                      className="opacity-0 dateinput"
+                      required={required}
+                      type="date"
+                      name="dateinput"
+                      id="dateinput"
+                      onChange={handleDateChange}
+                  />
+                  <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
+                      <CalendarDays size={15} />
+                      {selectedDate ? selectedDate : "dd / mm / yyyy"}
+                  </div>
+              </label>
+          </div>
+      </>
   );
 };
