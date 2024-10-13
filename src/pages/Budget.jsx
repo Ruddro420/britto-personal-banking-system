@@ -61,8 +61,9 @@ const Budget = () => {
                     placeholder="Amount"
                     data={(e) => setAmount(e.target.value)}
                     value={amount}
+                    required={true}
                   />
-                  <DateInputBox monthdata={setMonth} />
+                  <DateInputBox monthdata={setMonth} required={true} />
 
                   <ContactTextArea
                     row="3"
@@ -70,6 +71,7 @@ const Budget = () => {
                     name="note"
                     data={(e) => setNote(e.target.value)}
                     value={note}
+                    required={true}
                   />
 
                   <div>
@@ -111,7 +113,7 @@ const ContactInputBox = ({ type, placeholder, name, data, value }) => {
 };
 
 /* Date Input----------------- */
-const DateInputBox = ({ monthdata }) => {
+const DateInputBox = ({ monthdata, required }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
@@ -128,6 +130,7 @@ const DateInputBox = ({ monthdata }) => {
             name="dateinput"
             id="dateinput"
             onChange={handleDateChange}
+            required={required}
           />
           <div className=" rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
             <CalendarDays size={15} />
@@ -141,7 +144,7 @@ const DateInputBox = ({ monthdata }) => {
 
 /* text area------------- */
 
-const ContactTextArea = ({ row, placeholder, name, data, value }) => {
+const ContactTextArea = ({ row, placeholder, name, data, value, required }) => {
   return (
     <div className="mb-6">
       <textarea
@@ -151,6 +154,7 @@ const ContactTextArea = ({ row, placeholder, name, data, value }) => {
         className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
         onChange={data}
         value={value}
+        required={required}
       />
     </div>
   );
