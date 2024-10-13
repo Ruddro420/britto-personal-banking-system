@@ -1,13 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { CalendarDays } from "lucide-react";
-import SelectedDate from "../component/SelectedDate";
-import ReportTable from "./ReportTable";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+
 const Report = () => {
   const incomeList = useSelector((state) => state.personalBanking.addIncome);
   const expenseList = useSelector((state) => state.personalBanking.addExpense);
-  const [date, setDate] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  console.log("From: ", fromDate, "To: ",toDate )
 
   const mergedList = [
     ...incomeList.map((item) => ({ ...item, type: "Income" })),
@@ -30,8 +33,8 @@ const Report = () => {
       </section>
       <div className="dark:bg-dark-2 pb-5 mt-[-14px]">
         <div className="container">
-          <DateInputBox required={true} datedata={setDate} />
-          <DateInputBox required={true} datedata={setDate} />
+          <DateInputBox required={true} datedata={setFromDate} />
+          <DateInputBox required={true} datedata={setToDate} />
         </div>
       </div>
       <div className="mt-20">
