@@ -60,7 +60,7 @@ const DateInputBox = ({ datedata, required }) => {
             <label className="text-dark-5" htmlFor="form">From</label>
             <input
               className="opacity-0 dateinput"
-              required={required}
+              //required={required}
               type="date"
               name="dateinput"
               id="dateinput"
@@ -72,7 +72,7 @@ const DateInputBox = ({ datedata, required }) => {
             </div>
           </label>
         </div>
-        <div className="w-full mb-3 dateinputcontainer mt-4">
+       {/*  <div className="w-full mb-3 dateinputcontainer mt-4">
           <label htmlFor="dateinput" className="w-full mt-5">
             <label className="text-dark-5" htmlFor="form">To</label>
             <input
@@ -81,14 +81,14 @@ const DateInputBox = ({ datedata, required }) => {
               type="date"
               name="dateinput"
               id="dateinput"
-             // onChange={handleDateChange}
+              onChange={handleDateChange}
             />
             <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
               <CalendarDays size={15} />
               {selectedDate ? selectedDate : "dd / mm / yyyy"}
             </div>
           </label>
-        </div>
+        </div> */}
       </section>
     </>
   );

@@ -28,10 +28,8 @@ const Report = () => {
           </div>
         </div>
       </section>
-      <div className="dark:bg-dark-2 pb-5 mt-[-14px]">
-        <div className="container">
-          <DateInputBox required={true} datedata={setDate} />
-        </div>
+      <div className="mt-0 container">
+        <DateInputBox required={true} datedata={setDate} />
       </div>
       <div className="mt-20">
         {/*    <ReportTable tabledata={sortedList} /> */}
@@ -81,7 +79,7 @@ const DateInputBox = ({ datedata, required }) => {
               type="date"
               name="dateinput"
               id="dateinput"
-             // onChange={handleDateChange}
+              onChange={handleDateChange}
             />
             <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
               <CalendarDays size={15} />

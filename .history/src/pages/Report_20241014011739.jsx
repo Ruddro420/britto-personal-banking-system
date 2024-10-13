@@ -28,8 +28,9 @@ const Report = () => {
           </div>
         </div>
       </section>
-      <div className="dark:bg-dark-2 pb-5 mt-[-14px]">
-        <div className="container">
+      <div className="mt-20 container">
+        <div>
+          <label className="text-white mb-5" htmlFor="form">From</label>
           <DateInputBox required={true} datedata={setDate} />
         </div>
       </div>
@@ -54,10 +55,10 @@ const DateInputBox = ({ datedata, required }) => {
 
   return (
     <>
-      <section className="flex gap-5">
+      <section>
         <div className="w-full mb-3 dateinputcontainer mt-4">
           <label htmlFor="dateinput" className="w-full mt-5">
-            <label className="text-dark-5" htmlFor="form">From</label>
+          <label className="text-white" htmlFor="form">From</label>
             <input
               className="opacity-0 dateinput"
               required={required}
@@ -74,14 +75,13 @@ const DateInputBox = ({ datedata, required }) => {
         </div>
         <div className="w-full mb-3 dateinputcontainer mt-4">
           <label htmlFor="dateinput" className="w-full mt-5">
-            <label className="text-dark-5" htmlFor="form">To</label>
             <input
               className="opacity-0 dateinput"
               required={required}
               type="date"
               name="dateinput"
               id="dateinput"
-             // onChange={handleDateChange}
+              onChange={handleDateChange}
             />
             <div className="rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6 flex items-center gap-2">
               <CalendarDays size={15} />
