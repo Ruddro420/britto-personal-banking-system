@@ -1,27 +1,12 @@
 /* eslint-disable react/no-children-prop */
-import { FileSpreadsheet } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { deleteData } from "../redux/productSlice";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
-import * as XLSX from "xlsx";
+
 /* eslint-disable react/prop-types */
-const ReportTable = ({ tabledata, type }) => {
-  const generateExcel = () => {
-    // Prepare data for the sheet
-    const worksheetData = tabledata.map((income) => ({
-      Purpose: income.source,
-      Type: income.type,
-      Amount: income.amount,
-      [type ? "Month" : "Date"]:
-        income.type === "Budget" ? income.month : income.date,
-    }));
-
-    // Create a worksheet and workbook
-    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Report");
-
-    // Generate the Excel file and trigger download
-    XLSX.writeFile(workbook, "Report.xlsx");
-  };
+const DataTable = ({ tabledata, type }) => {
+  const dispatch = useDispatch();
 
   return (
     <div style={{ marginTop: "-110px", paddingBottom: "60px" }}>
@@ -38,9 +23,9 @@ const ReportTable = ({ tabledata, type }) => {
               <th scope="col" className="px-3 py-3">
                 {type ? "Month" : "Date"}
               </th>
-              {/*  <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-3 py-3">
                 Action
-              </th> */}
+              </th>
             </tr>
           </thead>
 
@@ -86,6 +71,21 @@ const ReportTable = ({ tabledata, type }) => {
                   <td className="px-2 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white">
                     {income.type === "Budget" ? income.month : income.date}
                   </td>
+
+                  <td className="pr-4 py-4 dark:bg-gray-800 bg-gray-100 text-black dark:text-white ">
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          deleteData({
+                            id: income.id,
+                          })
+                        )
+                      }
+                      className="userButton rounded cursor-pointer"
+                    >
+                      <Trash2 className="text-red-500" size={20} />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -100,20 +100,12 @@ const ReportTable = ({ tabledata, type }) => {
             </tr>
           )}
         </table>
-        <div className="dark:text-white flex justify-end p-2 gap-1 mt-1">
-        {/* Generate REport Sheet----------- */}
-        <button onClick={generateExcel} className="flex gap-1 border p-1 rounded dark:bg-gray-800">
-          <FileSpreadsheet />
-          Report
-        </button>
       </div>
-      </div>
-      
     </div>
   );
 };
 
-export default ReportTable;
+export default DataTable;
 
 const Tooltip = ({ text, children }) => {
   const [isVisible, setIsVisible] = useState(false);

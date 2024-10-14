@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addIncomeData } from "../redux/productSlice";
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
-import ReportTable from "./ReportTable";
+import DataTable from "./DataTable";
 
 const Income = () => {
     const [source, setSource] = useState("");
@@ -101,7 +101,7 @@ const Income = () => {
                 </div>
             </section>
             <div>
-                <ReportTable tabledata={mergedList}/>
+                <DataTable tabledata={mergedList}/>
             </div>
         </section>
     );

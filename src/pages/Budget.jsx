@@ -4,7 +4,7 @@ import { useState } from "react";
 import { addBudgetData } from "../redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { CalendarDays } from "lucide-react";
-import ReportTable from "./ReportTable";
+import DataTable from "./DataTable";
 
 const Budget = () => {
   const [amount, setAmount] = useState("");
@@ -89,7 +89,7 @@ const Budget = () => {
         </div>
       </section>
       <div>
-        <ReportTable type={"Budget"} tabledata={mergedList} />
+        <DataTable type={"Budget"} tabledata={mergedList} />
       </div>
     </section>
   );
