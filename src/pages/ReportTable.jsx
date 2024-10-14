@@ -1,11 +1,37 @@
 /* eslint-disable react/no-children-prop */
-import { FileSpreadsheet } from "lucide-react";
+import { ChevronLeft, ChevronRight, FileSpreadsheet } from "lucide-react";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 /* eslint-disable react/prop-types */
+
 const ReportTable = ({ tabledata, type }) => {
+
+
+  /* Pagination------------------------->>> */
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = tabledata.slice(firstIndex, lastIndex);
+  const totalPages = Math.ceil(tabledata.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  /* Pagination Ends Here------------------------->>> */
+
+  /* Export to Excel Sheet------------------------>>> */
   const generateExcel = () => {
-    // Prepare data for the sheet
     const worksheetData = tabledata.map((income) => ({
       Purpose: income.source,
       Type: income.type,
@@ -38,16 +64,13 @@ const ReportTable = ({ tabledata, type }) => {
               <th scope="col" className="px-3 py-3">
                 {type ? "Month" : "Date"}
               </th>
-              {/*  <th scope="col" className="px-3 py-3">
-                Action
-              </th> */}
             </tr>
           </thead>
 
           {/* Report Data to show----------- */}
-          {tabledata.length > 0 ? (
+          {currentItems.length > 0 ? (
             <tbody>
-              {tabledata.map((income, index) => (
+              {currentItems.map((income, index) => (
                 <tr
                   key={index}
                   className="dark:bg-gray-800 border-b text-black dark:text-white dark:border-gray-900 blue-400 text-center"
@@ -92,7 +115,7 @@ const ReportTable = ({ tabledata, type }) => {
           ) : (
             <tr className=" text-center">
               <td
-                colSpan="4"
+                colSpan="3"
                 className="px-6 py-4 text-center font-bold text-lg"
               >
                 No Transaction available
@@ -100,20 +123,40 @@ const ReportTable = ({ tabledata, type }) => {
             </tr>
           )}
         </table>
+
+        {/* Pagination------------ */}
+        <div className="dark:text-white flex justify-center items-center gap-4 p-2 mt-2">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className={`${currentPage == 1 ? "dark:text-gray-600":""}`}
+          >
+            <ChevronLeft />
+          </button>
+          <span>{`${currentPage} of ${totalPages}`}</span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`${currentPage == totalPages ? "dark:text-gray-600":""}`}
+          >
+            <ChevronRight />
+          </button>
+        </div>
+
         <div className="dark:text-white flex justify-end p-2 gap-1 mt-1">
-        {/* Generate REport Sheet----------- */}
-        <button onClick={generateExcel} className="flex gap-1 border p-1 rounded dark:bg-gray-800">
-          <FileSpreadsheet />
-          Report
-        </button>
+          {/* Generate Report Sheet----------- */}
+          <button
+            onClick={generateExcel}
+            className="flex gap-1 border p-1 rounded dark:bg-gray-800"
+          >
+            <FileSpreadsheet />
+            Report
+          </button>
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };
-
-export default ReportTable;
 
 const Tooltip = ({ text, children }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -128,7 +171,6 @@ const Tooltip = ({ text, children }) => {
       {isVisible && (
         <div>
           <div className="absolute max-w-44 bottom-[40px] ml-2 transform -translate-x-1/2 dark:bg-gray-700 bg-gray-200 py-2 px-4 rounded-md border-transparent border-t-gray-800">
-            {" "}
             {children}
           </div>
         </div>
@@ -136,3 +178,5 @@ const Tooltip = ({ text, children }) => {
     </div>
   );
 };
+
+export default ReportTable;

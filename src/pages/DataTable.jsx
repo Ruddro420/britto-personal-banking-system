@@ -1,12 +1,34 @@
 /* eslint-disable react/no-children-prop */
 import { useDispatch } from "react-redux";
 import { deleteData } from "../redux/productSlice";
-import { Trash2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
 const DataTable = ({ tabledata, type }) => {
   const dispatch = useDispatch();
+
+  /* Pagination------------------------->>> */
+  const itemsPerPage = 5; // Number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1); // State for current page
+
+  const lastIndex = currentPage * itemsPerPage; // Calculate last index for slicing
+  const firstIndex = lastIndex - itemsPerPage; // Calculate first index for slicing
+  const currentItems = tabledata.slice(firstIndex, lastIndex); // Get current items for the page
+  const totalPages = Math.ceil(tabledata.length / itemsPerPage); // Calculate total pages
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+  /* Pagination Ends Here------------------------->>> */
 
   return (
     <div style={{ marginTop: "-110px", paddingBottom: "60px" }}>
@@ -29,10 +51,10 @@ const DataTable = ({ tabledata, type }) => {
             </tr>
           </thead>
 
-          {/* Report Data to show----------- */}
-          {tabledata.length > 0 ? (
+          {/* Data to show with pagination */}
+          {currentItems.length > 0 ? (
             <tbody>
-              {tabledata.map((income, index) => (
+              {currentItems.map((income, index) => (
                 <tr
                   key={index}
                   className="dark:bg-gray-800 border-b text-black dark:text-white dark:border-gray-900 blue-400 text-center"
@@ -100,6 +122,25 @@ const DataTable = ({ tabledata, type }) => {
             </tr>
           )}
         </table>
+
+        {/* Pagination------------ */}
+        <div className="dark:text-white flex justify-center items-center gap-4 p-2 mt-2">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className={`${currentPage === 1 ? "dark:text-gray-600" : ""}`}
+          >
+            <ChevronLeft />
+          </button>
+          <span>{`${currentPage} of ${totalPages}`}</span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`${currentPage === totalPages  ? "dark:text-gray-600" : ""}`}
+          >
+            <ChevronRight />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -120,7 +161,6 @@ const Tooltip = ({ text, children }) => {
       {isVisible && (
         <div>
           <div className="absolute max-w-44 bottom-[40px] ml-2 transform -translate-x-1/2 dark:bg-gray-700 bg-gray-200 py-2 px-4 rounded-md border-transparent border-t-gray-800">
-            {" "}
             {children}
           </div>
         </div>

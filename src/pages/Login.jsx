@@ -20,7 +20,8 @@ const Login = () => {
         localStorage.setItem("darkMode", isDarkMode);
       }, [isDarkMode]);
     
-      
+     
+
     return (
         <div className={`min-h-screen ${isDarkMode ? "dark:bg-gray-900" : "bg-white"}`}>
             <section className="bg-gray-1 dark:bg-gray-900 py-20 lg:py-[120px]">

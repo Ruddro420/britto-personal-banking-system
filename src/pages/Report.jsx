@@ -1,14 +1,18 @@
 /* eslint-disable react/prop-types */
+
 import { CalendarDays } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import ReportTable from "./ReportTable";
 
 const Report = () => {
+  
   const incomeList = useSelector((state) => state.personalBanking.addIncome);
   const expenseList = useSelector((state) => state.personalBanking.addExpense);
+
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+
   const [filteredData, setFilteredData] = useState([]);
 
   const mergedList = [
@@ -16,11 +20,11 @@ const Report = () => {
     ...expenseList.map((item) => ({ ...item, type: "Expense" })),
   ];
 
-  // Function to filter mergedList based on date range
+  /* Filter Data by Date Range------------------------------------->>> */
+
   const filterByDate = (list, startDate, endDate) => {
     if (!startDate || !endDate) return list;
 
-    // Convert dates to milliseconds for comparison
     const fromDateMs = new Date(startDate).getTime();
     const toDateMs = new Date(endDate).getTime();
 
@@ -29,6 +33,7 @@ const Report = () => {
       return itemDateMs >= fromDateMs && itemDateMs <= toDateMs;
     });
   };
+/* Filter Data by Date Range------------------------------------->>> */
 
   // Handle form submission to filter the report
   const handleSearch = (e) => {

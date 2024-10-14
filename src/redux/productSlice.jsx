@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast"
 
 const initialState = {
     addIncome: [],
+    range: {},
     addExpense: [],
     addBudget: [],
     userInfo: []
@@ -45,9 +46,14 @@ export const productSlice = createSlice({
         logOutSession: (state) => {
             state.userInfo.session = 'No';
         },
+        setDateRange: (state, action) => {
+            state.range = action.payload;
+            localStorage.setItem("dateRange", JSON.stringify(action.payload));
+            // toast.success("Date range updated!");
+        }
     },
 })
 
-export const {logInSession, logOutSession, createPin, deleteData, addIncomeData, addExpenseData, addBudgetData, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
+export const {logInSession, logOutSession, createPin, deleteData, addIncomeData, addExpenseData, addBudgetData, setDateRange, increment, decrement, removeCart, resetData, addProduct, removeProduct, addOrder, addToCategory, removeCategory, resetOrder, removeOrder } = productSlice.actions
 
 export default productSlice.reducer;

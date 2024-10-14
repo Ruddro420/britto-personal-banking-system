@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
 import { CalendarDays } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addExpenseData } from "../redux/productSlice";
 import DataTable from "./DataTable";
@@ -43,6 +44,23 @@ const Expense = () => {
    const mergedList = [
       ...expenseList.map((item) => ({ ...item, type: "Expense" })),
    ];
+
+
+   /* ======================Filter====================== */
+  const [filteredList, setFilteredList] = useState([]);
+  const dateRange = useSelector((state) => state.personalBanking.range);
+  // Filter data based on the date range
+  useEffect(() => {
+    const fromDate = new Date(dateRange.fromDate);
+    const toDate = new Date(dateRange.toDate);
+
+    const newFilteredList = mergedList.filter((item) => {
+      const itemDate = new Date(item.date);
+      return itemDate >= fromDate && itemDate <= toDate;
+    });
+
+    setFilteredList(newFilteredList);/* .length > 0 ? newFilteredList : mergedList */
+  }, [dateRange, expenseList]);
    
   return (
     <section className="bg-gray-2 pt-[90px] dark:bg-dark lg:pb-20 lg:pt-[120px] pb-10 mb-5">
@@ -99,7 +117,7 @@ const Expense = () => {
         </div>
       </section>
       <div>
-        <DataTable tabledata={mergedList} />
+        <DataTable tabledata={filteredList} />
       </div>
     </section>
   );

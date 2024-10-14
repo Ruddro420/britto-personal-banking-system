@@ -73,7 +73,6 @@ const Budget = () => {
                     value={note}
                     required={true}
                   />
-                          git
                   <div>
                     <button
                       type="submit"
